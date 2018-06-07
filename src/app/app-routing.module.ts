@@ -1,5 +1,5 @@
-import { SecondComponent } from './second/second.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { SecondComponent } from './components/second/second.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
