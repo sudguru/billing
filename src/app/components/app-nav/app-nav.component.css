@@ -1,19 +1,38 @@
 .sidenav-container {
   height: 100%;
-  
 }
 
 .sidenav {
-  width: 56px;
+  width: 64px;
   background-color: #DCE775;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+  display: flex;
+  flex-direction: column;
+}
+
+.hidden-in-login {
+  display: none;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-.mat-tooltip
-{
-    font-size: 13px;
+
+.mat-tooltip {
+  font-size: 13px;
+}
+
+.header-image {
+  background-image: url('/assets/imgs/billing.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.header-image-green {
+  background-image: url('/assets/imgs/billing_green.png');
+  background-size: cover;
+  height: 48px;
+  width: 116px;
 }

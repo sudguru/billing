@@ -1,48 +1,37 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'push' : 'side'"
-    [opened]="!(isHandset$ | async)">
-    <mat-toolbar color="accent">
-      <mat-icon>menu</mat-icon>
+
+  <mat-sidenav #drawer class="sidenav" *ngIf="isLoggedIn == 1" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="accent" style="padding: 0;">
+      <div mat-card-avatar class="header-image"></div>
     </mat-toolbar>
-    <mat-nav-list style="padding-left:8px">
-      <button
-        matTooltip="Info about the action"
-        matTooltipPosition="right"
-        type="button"
-        aria-label="Home"
-        mat-icon-button
-        mat-stroked-button
-        color="warn"
-        routerLink='/second'>
-        <mat-icon aria-label="Side nav toggle icon">home</mat-icon>
-      </button>
-    </mat-nav-list>
+    <div fxLayout="column" style="flex: 1">
+      <mat-nav-list>
+        <a mat-list-item  *ngFor="let page of pages" [routerLink]="page.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [matTooltip]="page.toolTipText" matTooltipPosition="right">
+          <mat-icon style="font-size: 32px; margin-bottom: 8px">{{page.icon}}</mat-icon>
+        </a>
+      </mat-nav-list>
+      <span class="spacer"></span>
+      <mat-nav-list style="margin-bottom: 5px">
+        <a mat-list-item (click)="logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" matTooltip="Log Out" matTooltipPosition="right">
+          <mat-icon style="font-size: 32px; margin-bottom: 8px">exit_to_app</mat-icon>
+        </a>
+      </mat-nav-list>
+    </div>
+
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <button
-        type="button"
-        aria-label="Home"
-        mat-icon-button
-        routerLink='/second'>
-        <mat-icon aria-label="Side nav toggle icon">home</mat-icon>
-      </button>
+      <span style="font-weight: 100">{{ breadcumTitle }} &nbsp;&rsaquo;&nbsp; {{ breadcumSubTitle }}</span>
       <span class="spacer"></span>
-      <span>Application Title</span>
+      <div class="header-image-green"></div>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div style="padding: 0 16px">
+      <router-outlet></router-outlet>
+    </div>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
