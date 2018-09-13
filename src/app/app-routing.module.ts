@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
-import { SecondComponent } from './components/second/second.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 
 import { AuthGuard } from './guards/authguard';
 import { LoginGuard } from './guards/loginguard';
+import { StudentComponent } from './components/student/student.component';
 
 const routes: Routes = [
   {
@@ -21,7 +21,8 @@ const routes: Routes = [
   },
   {
     path: 'students',
-    component: SecondComponent
+    component: StudentComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'register',

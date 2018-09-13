@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     const result = await this.auth.login(this.account.email, this.account.password);
     if (!result.error) {
       const currentUser = result.user as User;
-      this.snackBar.open(`Welcom ${currentUser.name}`, 'Close' , {
+      this.snackBar.open(`Welcome ${currentUser.name}`, 'Close' , {
         duration: 3000
       });
       this.router.navigate(['/dashboard']);

@@ -21,7 +21,6 @@ export class AuthService {
   constructor(public http: HttpClient) { }
 
 
-
   async login(email: string, password: string) {
     const result = await this.http.post(`${this.endpoint}/auth/login`, { email, password }).toPromise();
     // console.log(result);

@@ -36,3 +36,17 @@
   height: 48px;
   width: 116px;
 }
+.header-soft-name {
+  background-image: url('/assets/imgs/soft-name.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 48px;
+  width: 150px;
+  font-size: 12px;
+  font-weight: 100;
+  text-align: right;
+  color: #666;
+  padding: 0;
+  vertical-align: text-top;
+  overflow: hidden;
+}

@@ -1,5 +1,5 @@
 import { AuthService } from './../../services/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, window } from 'rxjs/operators';
@@ -11,10 +11,9 @@ import { User } from '../../models/user.model';
   templateUrl: './app-nav.component.html',
   styleUrls: ['./app-nav.component.css']
 })
-export class AppNavComponent {
-
-  isLoggedIn = 1;
-
+export class AppNavComponent implements OnInit {
+  @ViewChild('drawer') private drawer;
+  isLoggedIn = 0;
   breadcumTitle = '';
   breadcumSubTitle = '';
   pages = [
@@ -37,17 +36,35 @@ export class AppNavComponent {
     private auth: AuthService
   ) {
     setInterval(() => {
-      this.isLoggedIn = parseInt(localStorage.getItem('isLoggedIn'), 2);
       this.breadcumTitle = localStorage.getItem('pagetitle');
       this.breadcumSubTitle = localStorage.getItem('pagesubtitle');
+      const t = localStorage.getItem('isLoggedIn');
+      if (t) {
+        this.isLoggedIn = parseInt(t, 2);
+      } else {
+        this.isLoggedIn = 0;
+      }
+      if (this.isLoggedIn === 0) {
+        this.drawer.close();
+      }
     }, 1000);
   }
 
+  ngOnInit(): void {
+    console.log('init');
+  }
+
+  async goToPage(page) {
+    this.router.navigate(['/' + page]);
+    await this.isHandset$.subscribe(data => {
+      if (data) {
+        this.drawer.close();
+      }
+    });
+  }
 
   logout() {
-    localStorage.setItem('isLoggedIn', '0');
-    this.isLoggedIn = 0;
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/']);
   }
 }

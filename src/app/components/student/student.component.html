@@ -1,0 +1,62 @@
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+</div>
+
+<div class="example-container mat-elevation-z8">
+    <button mat-button mat-fab color="accent" style="position: absolute; top:72px; right: 30px">
+        <mat-icon>add</mat-icon>
+      </button>
+  <mat-table [dataSource]="dataSource" matSort fxLayout="column">
+
+
+    <ng-container matColumnDef="sid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'widthSmall'"> SID </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'widthSmall'"> {{row.sid}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'customWidthClass'"> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'customWidthClass'"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-sm [ngClass]="'customWidthClass'"> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let row" fxHide.lt-sm [ngClass]="'customWidthClass'"> {{row.phone}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'widthSmall'"> Class </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngClass]="'widthSmall'"> {{row.class}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="rollnumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-sm [ngClass]="'widthSmall'"> Roll </mat-header-cell>
+      <mat-cell *matCellDef="let row" fxHide.lt-sm [ngClass]="'widthSmall'"> {{row.rollnumber}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxHide.lt-sm [ngClass]="'widthSmall'"> Status </mat-header-cell>
+      <mat-cell *matCellDef="let row" fxHide.lt-sm [ngClass]="'widthSmall'"> {{row.status}} </mat-cell>
+    </ng-container>
+
+    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+  <div>
+  <div style="float:left; margin: 8px 16px">
+    <button mat-button color="primary" (click)="showSummary()">View Summary</button>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 20, 30, 40, 50]"></mat-paginator>
+</div>
+</div>
+
+
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

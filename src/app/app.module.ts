@@ -14,19 +14,19 @@ import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MaterialModule } from './modules/material.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SecondComponent } from './components/second/second.component';
 import { LoginComponent } from './components/login/login.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RegisterComponent } from './components/register/register.component';
+import { StudentComponent } from './components/student/student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavComponent,
     DashboardComponent,
-    SecondComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,

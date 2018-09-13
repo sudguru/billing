@@ -1,19 +1,19 @@
 <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav #drawer class="sidenav" *ngIf="isLoggedIn == 1" fixedInViewport="true" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'push' : 'side'" [opened]="!(isHandset$ | async)">
     <mat-toolbar color="accent" style="padding: 0;">
       <div mat-card-avatar class="header-image"></div>
     </mat-toolbar>
     <div fxLayout="column" style="flex: 1">
       <mat-nav-list>
-        <a mat-list-item  *ngFor="let page of pages" [routerLink]="page.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [matTooltip]="page.toolTipText" matTooltipPosition="right">
+        <a mat-list-item  *ngFor="let page of pages" (click)="goToPage(page.link)" routerLinkActive="active" [matTooltip]="page.toolTipText" matTooltipPosition="right">
           <mat-icon style="font-size: 32px; margin-bottom: 8px">{{page.icon}}</mat-icon>
         </a>
       </mat-nav-list>
       <span class="spacer"></span>
       <mat-nav-list style="margin-bottom: 5px">
-        <a mat-list-item (click)="logout()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" matTooltip="Log Out" matTooltipPosition="right">
+        <a mat-list-item (click)="logout()" routerLinkActive="active" matTooltip="Log Out" matTooltipPosition="right">
           <mat-icon style="font-size: 32px; margin-bottom: 8px">exit_to_app</mat-icon>
         </a>
       </mat-nav-list>
@@ -25,11 +25,11 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span style="font-weight: 100">{{ breadcumTitle }} &nbsp;&rsaquo;&nbsp; {{ breadcumSubTitle }}</span>
+      <span style="font-weight: 100">{{ breadcumTitle }} &nbsp;&rsaquo;&nbsp; {{ breadcumSubTitle }} {{ (isHandset$ | async) }}</span>
       <span class="spacer"></span>
-      <div class="header-image-green"></div>
+      <div class="header-soft-name">Shress Boar Kaasthamandap Vidhyalaya</div>
     </mat-toolbar>
-    <div style="padding: 0 16px">
+    <div [style.padding]="!(isHandset$ | async) ? '8px 32px' : 0">
       <router-outlet></router-outlet>
     </div>
 
